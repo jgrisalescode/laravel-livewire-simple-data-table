@@ -21,6 +21,7 @@
                     <th scope="col" class="p-4">Name</th>
                     <th scope="col" class="p-4">Email</th>
                     <th scope="col" class="p-4">Verified</th>
+                    <th scope="col" class="p-4">Created At</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-outline dark:divide-outline-dark">
@@ -42,9 +43,10 @@
                                 </span>
                             @endif
                         </td>
+                        <td class="p-4">{{ Carbon\Carbon::parse($user->created_at)->format('d-m-Y') }}</td>
                     </tr>
                 @empty
-                    <td colspan="4" class="p-4 text-center">No data found</td>
+                    <td colspan="5" class="p-4 text-center">No data found</td>
                 @endforelse
             </tbody>
         </table>

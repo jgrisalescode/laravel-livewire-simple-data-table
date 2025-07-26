@@ -17,6 +17,11 @@ class Index extends Component
     #[Url(history: true)]
     public $perPage = 10;
 
+    #[Url(history: true)]
+    public $sortBy = 'created_at';
+
+    public $sortDirection = 'DESC';
+
     public function updated($property)
     {
         if ($property === 'search'){
@@ -28,7 +33,7 @@ class Index extends Component
     {
         return view('livewire.users.index', [
             'users' => User::search($this->search)
-                ->latest()
+                ->orderBy($this->sortBy, $this->sortDirection)
                 ->paginate($this->perPage)
         ]);
     }
