@@ -34,6 +34,9 @@
             @endforelse
         </tbody>
     </table>
+    <div class="m-2">
+        {{ $users->links() }}
+    </div>
 </div>
 
 </div>
