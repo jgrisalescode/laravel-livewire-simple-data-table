@@ -14,6 +14,9 @@ class Index extends Component
     #[Url(history: true)]
     public $search;
 
+    #[Url(history: true)]
+    public $perPage = 10;
+
     public function updated($property)
     {
         if ($property === 'search'){
@@ -26,7 +29,7 @@ class Index extends Component
         return view('livewire.users.index', [
             'users' => User::search($this->search)
                 ->latest()
-                ->paginate(10)
+                ->paginate($this->perPage)
         ]);
     }
 }
