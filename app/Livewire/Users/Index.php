@@ -12,6 +12,13 @@ class Index extends Component
 
     public $search;
 
+    public function updated($property)
+    {
+        if ($property === 'search'){
+            $this->resetPage();
+        }
+    }
+
     public function render()
     {
         return view('livewire.users.index', [
