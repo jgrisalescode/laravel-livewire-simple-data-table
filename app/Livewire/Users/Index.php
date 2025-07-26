@@ -29,6 +29,17 @@ class Index extends Component
         }
     }
 
+    public function setSortBy($sortByField)
+    {
+        if($sortByField === $this->sortBy){
+            $this->sortDirection = ($this->sortDirection == "ASC") ? "DESC" : "ASC";
+            return;
+        }
+
+        $this->sortBy = $sortByField;
+        $this->sortDirection = "DESC";
+    }
+
     public function render()
     {
         return view('livewire.users.index', [

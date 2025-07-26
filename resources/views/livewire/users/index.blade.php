@@ -17,11 +17,39 @@
         <table class="w-full text-left text-sm text-on-surface dark:text-on-surface-dark">
             <thead class="border-b border-outline bg-surface-alt text-sm text-on-surface-strong dark:border-outline-dark dark:bg-surface-dark-alt dark:text-on-surface-dark-strong">
                 <tr>
-                    <th scope="col" class="p-4">CustomerID</th>
-                    <th scope="col" class="p-4">Name</th>
-                    <th scope="col" class="p-4">Email</th>
+                    <th scope="col" class="p-4 cursor-pointer" wire:click="setSortBy('id')">
+                        <x-ui.sort-button 
+                            field="id"
+                            label="CustomerID"
+                            :$sortBy
+                            :$sortDirection
+                        />
+                    </th>
+                    <th scope="col" class="p-4 cursor-pointer" wire:click="setSortBy('name')">
+                        <x-ui.sort-button 
+                            field="name"
+                            label="Name"
+                            :$sortBy
+                            :$sortDirection
+                        />
+                    </th>
+                    <th scope="col" class="p-4 cursor-pointer" wire:click="setSortBy('email')">
+                        <x-ui.sort-button 
+                            field="email"
+                            label="Email"
+                            :$sortBy
+                            :$sortDirection
+                        />
+                    </th>
                     <th scope="col" class="p-4">Verified</th>
-                    <th scope="col" class="p-4">Created At</th>
+                    <th scope="col" class="p-4 cursor-pointer" wire:click="setSortBy('created_at')">
+                        <x-ui.sort-button 
+                            field="created_at"
+                            label="Created At"
+                            :$sortBy
+                            :$sortDirection
+                        />
+                    </th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-outline dark:divide-outline-dark">
@@ -43,7 +71,9 @@
                                 </span>
                             @endif
                         </td>
-                        <td class="p-4">{{ Carbon\Carbon::parse($user->created_at)->format('d-m-Y') }}</td>
+                        <td class="p-4">
+                            {{ Carbon\Carbon::parse($user->created_at)->format('d-m-Y') }}
+                        </td>
                     </tr>
                 @empty
                     <td colspan="5" class="p-4 text-center">No data found</td>
