@@ -14,7 +14,7 @@
                 autocomplete="search"
             />
         </div>
-        <button wire:click='export'>Export Users</button>
+        <flux:button icon="arrow-down-tray" wire:click='export' class='cursor-pointer'>Export Users</flux:button>
     </div>
 
     <div class="overflow-hidden w-full overflow-x-auto rounded-radius border border-outline dark:border-outline-dark">
