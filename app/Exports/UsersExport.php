@@ -4,9 +4,12 @@ namespace App\Exports;
 
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class UsersExport implements FromCollection, WithHeadings
+class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithStyles
 {
 
     public function __construct(private $filteredUsers)
@@ -29,6 +32,13 @@ class UsersExport implements FromCollection, WithHeadings
             'Name',
             'Email',
             'Created At'
+        ];
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        return [
+            1 => ['font' => ['bold' => true]]
         ];
     }
 
