@@ -44,14 +44,18 @@ class Index extends Component
 
     public function export()
     {
-        return Excel::download(new UsersExport, 'users.xlsx');
+        return Excel::download(new UsersExport(request()->session()->get('users_to_export')), 'users.xlsx');
     }
 
     public function render()
     {
+        $filteredUsers = User::search($this->search)
+            ->orderBy($this->sortBy, $this->sortDirection);
+
+        request()->session()->put('users_to_export', $filteredUsers->get());
+
         return view('livewire.users.index', [
-            'users' => User::search($this->search)
-                ->orderBy($this->sortBy, $this->sortDirection)
+            'users' => $filteredUsers 
                 ->paginate($this->perPage)
         ]);
     }
