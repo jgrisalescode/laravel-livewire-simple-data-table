@@ -12,6 +12,7 @@ class UsersExport implements FromCollection, WithHeadings
     public function __construct(private $filteredUsers)
     {
         $this->filteredUsers = $filteredUsers;
+        $this->filteredUsers = $this->prepareData();
     }
     /**
     * @return \Illuminate\Support\Collection
@@ -29,5 +30,17 @@ class UsersExport implements FromCollection, WithHeadings
             'Email',
             'Created At'
         ];
+    }
+
+    private function prepareData()
+    {
+        return $this->filteredUsers->map(function ($user) {
+            return [
+                $user->id,
+                $user->name,
+                $user->email,
+                $user->created_at
+            ];
+        });
     }
 }
