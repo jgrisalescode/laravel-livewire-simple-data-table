@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Users;
 
+use App\Exports\UsersExport;
 use App\Models\User;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component
 {
@@ -38,6 +40,11 @@ class Index extends Component
 
         $this->sortBy = $sortByField;
         $this->sortDirection = "DESC";
+    }
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 
     public function render()
